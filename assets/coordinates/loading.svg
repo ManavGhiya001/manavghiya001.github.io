@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <g transform="translate(60,60)">
+    <circle cx="0" cy="-40" r="10" fill="#ff1a1a">
+      <animate attributeName="cy" values="-40;-10;-40" dur="1s" repeatCount="indefinite"/>
+      <animate attributeName="cx" values="0;0;0" dur="1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="35" cy="-20" r="10" fill="#3b5ca8">
+      <animate attributeName="cy" values="-20;-40;-20" dur="1s" repeatCount="indefinite" begin="0.1s"/>
+      <animate attributeName="cx" values="35;35;35" dur="1s" repeatCount="indefinite" begin="0.1s"/>
+    </circle>
+    <circle cx="35" cy="20" r="10" fill="#feca1b">
+      <animate attributeName="cy" values="20;-10;20" dur="1s" repeatCount="indefinite" begin="0.2s"/>
+      <animate attributeName="cx" values="35;35;35" dur="1s" repeatCount="indefinite" begin="0.2s"/>
+    </circle>
+    <circle cx="0" cy="40" r="10" fill="#78c850">
+      <animate attributeName="cy" values="40;20;40" dur="1s" repeatCount="indefinite" begin="0.3s"/>
+      <animate attributeName="cx" values="0;0;0" dur="1s" repeatCount="indefinite" begin="0.3s"/>
+    </circle>
+    <circle cx="-35" cy="20" r="10" fill="#f08030">
+      <animate attributeName="cy" values="20;40;20" dur="1s" repeatCount="indefinite" begin="0.4s"/>
+      <animate attributeName="cx" values="-35;-35;-35" dur="1s" repeatCount="indefinite" begin="0.4s"/>
+    </circle>
+    <circle cx="-35" cy="-20" r="10" fill="#6890f0">
+      <animate attributeName="cy" values="-20;10;-20" dur="1s" repeatCount="indefinite" begin="0.5s"/>
+      <animate attributeName="cx" values="-35;-35;-35" dur="1s" repeatCount="indefinite" begin="0.5s"/>
+    </circle>
+  </g>
+</svg>

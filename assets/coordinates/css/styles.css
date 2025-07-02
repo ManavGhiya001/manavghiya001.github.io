@@ -1,0 +1,320 @@
+/* Pokemon IV Finder Styles */
+
+:root {
+  --pokemon-red: #ff5350;
+  --pokemon-blue: #3b5ca8;
+  --pokemon-yellow: #feca1b;
+  --grass-type: #78c850;
+  --fire-type: #f08030;
+  --water-type: #6890f0;
+  --normal-type: #a8a878;
+}
+
+body {
+  background-color: #121212; /* Darker background */
+  padding-bottom: 2rem;
+}
+
+/* Navbar Styling */
+.navbar-brand img {
+  animation: spin 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.navbar-brand:hover img {
+  animation-play-state: running;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Card Styling */
+.card {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.card-header {
+  font-weight: 600;
+}
+
+/* Form Controls */
+.form-control:focus, .form-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Pokemon Table Styling */
+#pokemon-table th {
+  position: sticky;
+  top: 0;
+  background-color: var(--bs-body-bg);
+  z-index: 10;
+}
+
+.pokemon-sprite {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.pokemon-name {
+  font-weight: 600;
+}
+
+/* IV Progress bars */
+.iv-bar {
+  height: 5px;
+  border-radius: 5px;
+  margin-bottom: 2px;
+}
+
+.iv-atk {
+  background-color: var(--pokemon-red);
+}
+
+.iv-def {
+  background-color: var(--pokemon-blue);
+}
+
+.iv-sta {
+  background-color: var(--pokemon-yellow);
+}
+
+/* Perfect IV Badge */
+.perfect-iv {
+  background-color: var(--grass-type);
+  font-weight: bold;
+}
+
+/* Shiny Icon */
+.shiny-icon {
+  color: gold;
+  animation: shiny 2s infinite alternate;
+}
+
+@keyframes shiny {
+  from { opacity: 0.7; }
+  to { opacity: 1; transform: scale(1.1); }
+}
+
+/* Disappears Timer Colors */
+.timer-green {
+  color: #28a745; /* Green for > 15 minutes */
+}
+
+.timer-white {
+  color: #ffffff; /* White for 10-15 minutes */
+}
+
+.timer-yellow {
+  color: var(--pokemon-yellow); /* Yellow for 5-10 minutes */
+}
+
+.timer-red {
+  color: var(--pokemon-red); /* Red for 1-5 minutes */
+}
+
+/* Location Badge */
+.location-badge {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Map Button */
+.map-button {
+  color: var(--bs-primary);
+  cursor: pointer;
+}
+
+.map-button:hover {
+  color: var(--bs-primary-hover);
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .table-responsive {
+    max-height: 70vh;
+  }
+  
+  .location-badge {
+    display: inline-block;
+    margin-bottom: 0.25rem;
+  }
+}
+
+/* Loading animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Empty state styles */
+#empty-results i {
+  opacity: 0.5;
+}
+
+/* Table custom styles */
+.pokemon-info {
+  display: flex;
+  align-items: center;
+}
+
+/* Make sure the footer has enough space */
+body {
+  min-height: 100vh;
+}
+
+/* Pokemon dropdown styling */
+#pokemon-dropdown .dropdown-menu {
+  width: 100%;
+  padding: 10px;
+}
+
+.dropdown-menu-lg {
+  min-width: 300px;
+}
+
+#pokemon-list-container {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+.pokemon-item {
+  padding: 4px 8px;
+  margin-bottom: 2px;
+  border-radius: 4px;
+}
+
+.pokemon-item:hover {
+  background-color: var(--bs-dark-bg-subtle);
+}
+
+#selected-pokemon-count {
+  min-width: 24px;
+}
+
+.dropdown-header.gen-header {
+  font-weight: bold;
+  color: var(--bs-primary);
+  padding: 8px 4px;
+  margin-top: 4px;
+}
+
+.generation-container {
+  padding-left: 8px;
+}
+
+.pokemon-id-badge {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.4rem;
+  margin-left: 4px;
+}
+
+.quick-select-buttons {
+  margin: 8px 0;
+}
+
+/* Style for the IV toggle */
+.btn-check:checked + .btn-outline-primary {
+  background-color: var(--bs-primary);
+  color: white;
+}
+
+/* CP and Level input styling */
+.form-control-sm {
+  height: calc(1.5em + 0.5rem + 2px);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* Sorting styles */
+.sort-icon {
+  cursor: pointer;
+  opacity: 0.6;
+  margin-left: 5px;
+  transition: opacity 0.3s ease;
+}
+
+.sort-icon:hover {
+  opacity: 1;
+}
+
+.sort-icon.active {
+  opacity: 1;
+}
+
+.sort-icon.active .fa-sort-up,
+.sort-icon.active .fa-sort-down {
+  color: var(--bs-primary);
+}
+
+/* CP, Level, Size, and Stats Badges */
+.cp-badge, .level-badge {
+  font-size: 0.9rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.stats-badge, .size-badge {
+  font-size: 0.7rem;
+  padding: 0.1rem 0.3rem;
+}
+
+/* Custom badge colors */
+.bg-purple {
+  background-color: #6f42c1; /* Purple color for XXL */
+}
+
+/* Copy coordinates button */
+.copy-coords-btn {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.copy-coords-btn:hover {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: white;
+}
+
+/* Table improvements */
+#pokemon-table td {
+  vertical-align: middle;
+}
+
+/* Enhance the dark theme */
+.card {
+  background-color: #1e1e1e;
+  border-color: #333;
+}
+
+.table {
+  --bs-table-hover-bg: rgba(255, 255, 255, 0.05);
+}
+
+.dropdown-menu {
+  background-color: #1e1e1e;
+  border-color: #333;
+}
+
+.form-control, .form-select {
+  background-color: #333;
+  border-color: #444;
+  color: #fff;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: #3a3a3a;
+  color: #fff;
+}

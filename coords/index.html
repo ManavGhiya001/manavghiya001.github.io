@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Coordinates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #000; /* Pure black background */
+            color: #fff; /* White text color */
+        }
+        #coords {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #0f0; /* Bright green color for coordinates */
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: #333; /* Dark gray button background */
+            color: #fff; /* White text color */
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px #222, 0 10px 15px rgba(0, 0, 0, 0.4); /* 3D effect */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+        }
+        button:hover {
+            background-color: #555; /* Lighter gray on hover */
+            transform: translateY(-3px); /* Lift up on hover */
+            box-shadow: 0 8px #111, 0 12px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+        }
+        button:active {
+            background-color: #777; /* Even lighter gray on click */
+            transform: translateY(1px); /* Slightly pressed down on click */
+            box-shadow: 0 3px #000, 0 5px 10px rgba(0, 0, 0, 0.4); /* Adjusted shadow on click */
+        }
+    </style>
+</head>
+<body>
+
+<div id="coords"></div>
+<button onclick="copyToClipboard()">Copy Coordinates</button>
+
+<script>
+    // Function to get URL parameters
+    function getUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+        return params.entries().next().value[0];
+    }
+
+    // Display coordinates
+    const coords = getUrlParams();
+    document.getElementById('coords').innerText = coords;
+
+    // Function to copy to clipboard
+    function copyToClipboard() {
+        const el = document.createElement('textarea');
+        el.value = coords;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        alert('Coordinates copied to clipboard!');
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon VIP Notify Bot Guide</title>
+    <style>
+        :root {
+            --primary: #7289da;
+            --dark-bg: #36393f;
+            --darker-bg: #2f3136;
+            --text: #dcddde;
+            --text-muted: #a3a6aa;
+            --card-bg: #40444b;
+            --success: #43b581;
+            --warning: #faa61a;
+            --danger: #f04747;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--darker-bg);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            border-bottom: 1px solid var(--darker-bg);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            color: var(--text);
+            margin-top: 25px;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .command {
+            background-color: var(--darker-bg);
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            margin: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .command-prefix {
+            color: var(--primary);
+            margin-right: 5px;
+        }
+        
+        .command-name {
+            color: var(--success);
+            margin-right: 5px;
+        }
+        
+        .command-args {
+            color: var(--warning);
+        }
+        
+        .example {
+            background-color: rgba(114, 137, 218, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .note {
+            background-color: rgba(250, 166, 26, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .warning {
+            background-color: rgba(240, 71, 71, 0.1);
+            border-left: 4px solid var(--danger);
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .filter-type {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-right: 5px;
+        }
+        
+        .include {
+            background-color: rgba(67, 181, 129, 0.2);
+            color: var(--success);
+        }
+        
+        .exclude {
+            background-color: rgba(240, 71, 71, 0.2);
+            color: var(--danger);
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        .steps {
+            counter-reset: step;
+        }
+        
+        .step {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .step:before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .command {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pokémon VIP Notify Bot Guide</h1>
+            <p>Get notified about rare Pokémon spawns in your favorite channels!</p>
+        </header>
+        
+        <section>
+            <h2>🤖 Basic Commands</h2>
+            
+            <div class="card">
+                <h3>Setting Up Notifications</h3>
+                <p>First, you need to set which channels you want to get notifications from.</p>
+                
+                <div class="command">
+                    <span class="command-prefix">/</span>
+                    <span class="command-name">notify set</span>
+                    <span class="command-args">#channel1 #channel2</span>
+                </div>
+                
+                <div class="example">
+                    <strong>Example:</strong> <code>/notify set #rare-spawns #ultra-rares</code><br>
+                    This will make the bot only notify you about spawns in these two channels.
+                </div>
+                
+                <div class="note">
+                    💡 You can mention channels by typing # or paste channel links. You can set multiple channels at once.
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Adding/Removing Channels</h3>
+                <p>You can add or remove channels from your notification list without resetting everything.</p>
+                
+                <div class="command">
+                    <span class="command-prefix">/</span>
+                    <span class="command-name">notify add</span>
+                    <span class="command-args">#new-channel</span>
+                </div>
+                
+                <div class="command">
+                    <span class="command-prefix">/</span>
+                    <span class="command-name">notify remove</span>
+                    <span class="command-args">#old-channel</span>
+                </div>
+                
+                <div class="example">
+                    <strong>Example:</strong> <code>/notify add #all-level-hundo</code><br>
+                    This adds all hundos channel to your existing notifications.
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Viewing/Clearing Notifications</h3>
+                
+                <div class="command">
+                    <span class="command-prefix">/</span>
+                    <span class="command-name">notify show</span>
+                </div>
+                
+                <div class="command">
+                    <span class="command-prefix">/</span>
+                    <span class="command-name">notify clear</span>
+                </div>
+                
+                <div class="example">
+                    <strong>Example:</strong> <code>/notify clear</code><br>
+                    This removes all your notification settings completely.
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>🔍 Advanced Filtering</h2>
+            <p>Filters let you control exactly which Pokémon you get notified about.</p>
+            
+            <div class="card">
+                <h3>Filter Types</h3>
+                
+                <p>There are two types of filters you can use:</p>
+                
+                <ul>
+                    <li><strong>Name filters</strong> - Match against the Pokémon's name (e.g., "Dragonite", "Shiny")</li>
+                    <li><strong>Data filters</strong> - Match against the stats/attributes (e.g., "100.00", "PvP")</li>
+                </ul>
+                
+                <p>Each type has two modes:</p>
+                
+                <p>
+                    <span class="filter-type include">INCLUDE</span>
+                    Only notify if the Pokémon matches <strong>at least one</strong> of these filters
+                </p>
+                
+                <p>
+                    <span class="filter-type exclude">EXCLUDE</span>
+                    Never notify if the Pokémon matches <strong>any</strong> of these filters
+                </p>
+            </div>
+            
+            <div class="card">
+                <h3>Setting Filters</h3>
+                
+                <div class="command">
+                    <span class="command-prefix">/</span>
+                    <span class="command-name">notify filter</span>
+                    <span class="command-args">set name include dragonite,tyranitar</span>
+                </div>
+                
+                <div class="example">
+                    <strong>Example 1:</strong> <code>/notify filter set name include dragonite,tyranitar</code><br>
+                    You'll <strong>only</strong> get notified about Dragonite and Tyranitar spawns.
+                </div>
+                
+                <div class="example">
+                    <strong>Example 2:</strong> <code>/notify filter set data exclude 0.00,1.00,2.00,3.00</code><br>
+                    You'll <strong>never</strong> get notified about Pokémon with 0-3% IVs.
+                </div>
+                
+                <div class="example">
+                    <strong>Example 3:</strong> <code>/notify filter add name exclude shiny</code><br>
+                    Adds to your existing filters - you won't get notified about shiny Pokémon.
+                </div>
+                
+                <div class="note">
+                    💡 You can use <code>set</code> to replace all filters, or <code>add</code>/<code>remove</code> to modify existing ones.
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Practical Filter Examples</h3>
+                
+                <div class="steps">
+                    <div class="step">
+                        <strong>Only want perfect IV Pokémon?</strong><br>
+                        <code>/notify filter set data include 100.00</code>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Only want PvP relevant Pokémon?</strong><br>
+                        <code>/notify filter set data include pvp</code>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Don't care about weather boosted spawns?</strong><br>
+                        <code>/notify filter set name exclude boosted</code>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Only want specific rare Pokémon?</strong><br>
+                        <code>/notify filter set name include dragonite,snorlax,garchomp,metagross</code>
+                    </div>
+                    
+                    <div class="step">
+                        <strong>Want everything except common spawns?</strong><br>
+                        <code>/notify filter set name exclude pidgey,rattata,weedle</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Managing Your Filters</h3>
+                
+                <div class="command">
+                    <span class="command-prefix">/</span>
+                    <span class="command-name">notify manage</span>
+                    <span class="command-args">show</span>
+                </div>
+                
+                <div class="command">
+                    <span class="command-prefix">/</span>
+                    <span class="command-name">notify manage</span>
+                    <span class="command-args">clear</span>
+                </div>
+                
+                <div class="example">
+                    <strong>Example:</strong> <code>/notify manage show</code><br>
+                    This shows all your current filters in a text file.
+                </div>
+                
+                <div class="warning">
+                    ⚠️ <code>/notify manage clear</code> will remove <strong>all</strong> your filters permanently!
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>❓ Need Help?</h2>
+            <div class="card">
+                <p>If you're having trouble with the bot, please contact the server staff.</p>
+                <p>Remember to be specific about:</p>
+                <ul>
+                    <li>What you're trying to do</li>
+                    <li>What commands you've tried</li>
+                    <li>What results you're getting</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

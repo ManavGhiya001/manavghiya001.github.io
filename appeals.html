@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Message with Media via Webhook</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="file"] {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 300px;
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        input[type="file"] {
+            padding: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            background-color: #1e90ff;
+            color: #ffffff;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            box-shadow: 0px 5px 15px rgba(30, 144, 255, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.95);
+            box-shadow: 0px 3px 10px rgba(30, 144, 255, 0.2);
+        }
+
+        button:hover {
+            background-color: #1c86ee;
+        }
+    </style>
+</head>
+<body>
+    <h1>Send Message with Media</h1>
+    <input type="text" id="message" placeholder="Enter your message here">
+    <input type="file" id="media" multiple>
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        async function sendMessage() {
+            const message = document.getElementById('message').value;
+            const mediaFiles = document.getElementById('media').files;
+            const webhookUrl = 'https://discord.com/api/webhooks/1245276754386354219/JOx1tYJouXWwJPHPi0dqtXo7s5ZYpg1VZTO1ibQB1ty2xecFzG49HZUGvwrZrieO8ADN';
+
+            // Create form data
+            const formData = new FormData();
+            formData.append('content', message);
+
+            // Append each media file to the form data
+            for (let i = 0; i < mediaFiles.length; i++) {
+                formData.append('file' + i, mediaFiles[i]);
+            }
+
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert('Message and media sent successfully!');
+                    document.getElementById('message').value = ''; // Clear text input
+                    document.getElementById('media').value = '';   // Clear file input
+                } else {
+                    alert('Failed to send message and media.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while sending the message and media.');
+            }
+        }
+    </script>
+</body>
+</html>

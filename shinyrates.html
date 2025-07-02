@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShinyRates Viewer</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #2c2f33;
+      color: #ffffff;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .search-container input {
+      width: 50%;
+      padding: 10px;
+      border: 1px solid #555;
+      border-radius: 5px;
+      background-color: #23272a;
+      color: #fff;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #7289da;
+      color: #fff;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #2c2f33;
+    }
+
+    tr:nth-child(even) {
+      background-color: #23272a;
+    }
+
+    tr:hover {
+      background-color: #444;
+    }
+
+    .pokemon-icon {
+      width: 50px;
+      height: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .search-container input {
+        width: 80%;
+      }
+
+      th,
+      td {
+        padding: 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>ShinyRates Viewer</h1>
+  <div class="search-container">
+    <input type="text" id="search-box" placeholder="Search for Pokemon..." oninput="filterTable()">
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Icon</th>
+        <th>Pokemon</th>
+        <th>Rate</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
+
+  <script>
+    async function fetchShinyRates() {
+      const url = 'https://pokego.me/api/shiny-rates';
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        data.sort((a, b) => a.name.localeCompare(b.name));
+
+        const tbody = document.getElementById('table-body');
+        tbody.innerHTML = '';
+
+        data.forEach(item => {
+          const tr = document.createElement('tr');
+          const iconUrl = `https://raw.githubusercontent.com/ManavGhiya001/pokemons/master/UICONS_OS/pokemon/${item.id}.png`;
+
+          tr.innerHTML = `
+            <td><img src="${iconUrl}" alt="${item.name}" class="pokemon-icon"></td>
+            <td>${item.name}</td>
+            <td>${item.rate}</td>
+            <td>${item.total}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      } catch (e) {
+        console.error('Failed to load shiny rates:', e);
+      }
+    }
+
+    function filterTable() {
+      const searchValue = document.getElementById('search-box').value.toLowerCase();
+      const rows = document.querySelectorAll('#table-body tr');
+
+      rows.forEach(row => {
+        const pokemonName = row.children[1].textContent.toLowerCase();
+        row.style.display = pokemonName.includes(searchValue) ? '' : 'none';
+      });
+    }
+
+    fetchShinyRates();
+  </script>
+</body>
+
+</html>
