@@ -412,7 +412,7 @@ async function searchPokemon() {
  * @returns {Promise<Object>} - Pokemon data response
  */
 async function fetchPokemonData(location) {
-  const primaryURL = `https://pgcoordinates.my.pebble.host/api/coords/${location}`;
+  const primaryURL = `https://map.pokego.me/api/coords/${location}`;
   const fallbackURL = `https://pokecoords-js.onrender.com/api/coords/${location}`;
 
   try {
