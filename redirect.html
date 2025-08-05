@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Redirecting...</title>
+  <meta name="robots" content="noindex, nofollow">
   <script>
     window.onload = function () {
       const target = decodeURIComponent(window.location.search.substring(1));
@@ -12,7 +13,7 @@
         document.getElementById("link").textContent = target;
         setTimeout(function () {
           window.location.href = target;
-        }, 1000); // 3 seconds
+        }, 1000); // 1 second
       } else {
         document.body.innerHTML = "<h1>No URL provided</h1>";
       }
@@ -20,7 +21,7 @@
   </script>
 </head>
 <body>
-  <h1>Redirecting in 3 seconds...</h1>
+  <h1>Redirecting in 1 second...</h1>
   <p>If it doesn't redirect, <a id="link" href="#">click here</a>.</p>
 </body>
 </html>
