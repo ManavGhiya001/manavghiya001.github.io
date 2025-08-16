@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>/questsearch Example Commands Guide</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f6f8; color: #333; }
+    h1 { text-align: center; }
+    h2 { margin-top: 30px; color: #222; }
+    .command { background: #fff; padding: 10px; margin: 8px 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+    code { background: #eee; padding: 2px 6px; border-radius: 4px; }
+    button { background: #007BFF; color: #fff; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .desc { margin-top: 4px; font-size: 0.9em; color: #555; }
+  </style>
+  <script>
+    function copyCommand(btn) {
+      const codeBlock = btn.parentElement.querySelector('code');
+      const text = codeBlock.innerText;
+      const modifiedText = text.replace('/questsearch ', '/questsearch query:');
+      navigator.clipboard.writeText(modifiedText).then(() => {
+        btn.innerText = 'Copied!';
+        setTimeout(() => btn.innerText = 'Copy', 1000);
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>/questsearch Example Commands Guide</h1>
+
+  <h2>1. Item Rewards</h2>
+  <div class="command"><div><code>/questsearch Razz Berry</code><div class="desc">Find quests rewarding Razz Berries.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch Pokeball</code><div class="desc">Search for quests rewarding Poké Balls.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+
+  <h2>2. Pokémon Encounters</h2>
+  <div class="command"><div><code>/questsearch pikachu</code><div class="desc">Quest that rewards a Pikachu encounter.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch 150</code><div class="desc">Encounter reward by Pokédex ID (Mewtwo).</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch mewtwo/armored</code><div class="desc">Search quests that reward Armored Mewtwo.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch snorlax=shadow</code><div class="desc">Only Shadow Snorlax, not others.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+
+  <h2>3. Reward Types</h2>
+  <div class="command"><div><code>/questsearch xp</code><div class="desc">Find quests that reward XP.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch item</code><div class="desc">Quests that reward items.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch stardust</code><div class="desc">Quests that reward Stardust.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch candy</code><div class="desc">Quests that reward candy.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch encounter</code><div class="desc">Quests that reward Pokémon encounters.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch coin</code><div class="desc">Quests that reward PokéCoins.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch xl</code><div class="desc">Quests rewarding XL Candy.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch megaenergy</code><div class="desc">Quests rewarding Mega Energy.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+
+  <h2>4. Quantity Filters</h2>
+  <div class="command"><div><code>/questsearch xp1000</code><div class="desc">Find quests that reward at least 1000 XP.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch stardust500</code><div class="desc">Quests rewarding at least 500 Stardust.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch candy3</code><div class="desc">Quests rewarding 3 or more candies.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch coin50</code><div class="desc">Quests rewarding 50+ PokéCoins.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+
+  <h2>5. AR Mode Filters</h2>
+  <div class="command"><div><code>/questsearch ar</code><div class="desc">Quests requiring AR mode.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch nonar</code><div class="desc">Quests that do not use AR.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch anyar</code><div class="desc">Quests with any AR condition.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+
+  <h2>6. Shiny Encounter Rewards</h2>
+  <div class="command"><div><code>/questsearch shiny</code><div class="desc">Find quests with guaranteed shiny rewards.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch ✨</code><div class="desc">Same as shiny, guaranteed shiny encounters.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+
+  <h2>7. Location & Radius Filters</h2>
+  <div class="command"><div><code>/questsearch 5km</code><div class="desc">Search within a 5 km radius.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch 20mi</code><div class="desc">Search within 20 miles radius.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch 34.0522,-118.2437</code><div class="desc">Search near Los Angeles coordinates.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch 40.7128,-74.0060 candy3</code><div class="desc">Find quests near NYC rewarding 3+ candies.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+
+  <h2>8. Weather Condition Filters</h2>
+  <div class="command"><div><code>/questsearch clear</code><div class="desc">Quests in clear weather.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch rainy</code><div class="desc">Quests in rainy weather.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch partlycloudy</code><div class="desc">Quests in partly cloudy weather.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch cloudy</code><div class="desc">Quests in cloudy weather.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch windy</code><div class="desc">Quests in windy weather.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch snow</code><div class="desc">Quests in snowy weather.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch fog</code><div class="desc">Quests in foggy weather.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch pikachu 🌧</code><div class="desc">Find Pikachu quests during rainy weather.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+
+  <h2>9. Mixed Complex Queries</h2>
+  <div class="command"><div><code>/questsearch pikachu shiny ar</code><div class="desc">Quest with shiny Pikachu encounter requiring AR.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch stardust1000 nonar</code><div class="desc">Non-AR quest rewarding 1000 Stardust.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch candy3 xp1000 ar</code><div class="desc">AR quest rewarding 3 candies and 1000 XP.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+  <div class="command"><div><code>/questsearch mewtwo 40.7128,-74.0060 shiny</code><div class="desc">Find shiny Mewtwo encounter quests near NYC.</div></div><button onclick="copyCommand(this)">Copy</button></div>
+
+</body>
+</html>
