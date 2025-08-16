@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>/pokesearch Example Commands Guide</title>
+  <style>
+    :root {
+      --bg: #0f1221;
+      --card: #141832;
+      --card-2: #11162c;
+      --text: #e9ecf1;
+      --muted: #b9bfd1;
+      --accent: #7aa2ff;
+      --accent-2: #8dffca;
+      --border: #22294a;
+      --code-bg: #0b0f22;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(180deg, var(--bg), #0a0d1a 60%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(15,18,33,0.7);
+      border-bottom: 1px solid var(--border);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .logo { width: 28px; height: 28px; border-radius: 9px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 6px 24px rgba(122,162,255,0.35); }
+    h1 { font-size: 28px; margin: 0; }
+
+    nav { margin-top: 10px; display: grid; grid-auto-flow: column; gap: 10px; overflow:auto; padding-bottom: 8px; }
+    nav a { white-space: nowrap; text-decoration: none; color: var(--text); border: 1px solid var(--border); background: var(--card-2); padding: 8px 12px; border-radius: 10px; font-size: 14px; }
+    nav a:hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(122,162,255,0.15) inset; }
+
+    main { padding: 24px 16px 60px; }
+    .lead { color: var(--muted); max-width: 800px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
+
+    section.section {
+      background: radial-gradient(1200px 600px at -10% -10%, rgba(122,162,255,0.06), transparent 60%), var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    }
+    section.section h2 { margin: 0 0 12px; font-size: 20px; }
+    .item { border: 1px dashed var(--border); border-radius: 12px; padding: 12px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)); }
+    .row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+
+    pre { margin: 0; }
+    code { display: block; background: var(--code-bg); color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 13px; overflow:auto; }
+    .desc { margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+    .copy-btn { cursor: pointer; border: 1px solid var(--border); background: var(--card-2); color: var(--text); border-radius: 10px; padding: 8px 10px; font-size: 12px; }
+    .copy-btn:hover { border-color: var(--accent); }
+
+    .searchbar { margin: 16px 0 10px; display: flex; gap: 10px; }
+    .searchbar input { flex: 1; background: var(--card-2); color: var(--text); border: 1px solid var(--border); padding: 12px; border-radius: 12px; }
+    .searchbar small { color: var(--muted); }
+
+    footer { color: var(--muted); text-align: center; padding: 30px 0 60px; }
+    .muted { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>/pokesearch Example Commands Guide</h1>
+      </div>
+      <nav aria-label="Sections">
+        <a href="#basic">Basic</a>
+        <a href="#iv">IV</a>
+        <a href="#cp">CP</a>
+        <a href="#level">Level</a>
+        <a href="#exact-iv">Exact IV</a>
+        <a href="#boosted">Boosted</a>
+        <a href="#gender">Gender</a>
+        <a href="#pvp">PvP</a>
+        <a href="#size">Size</a>
+        <a href="#radius">Radius & Location</a>
+        <a href="#weather">Weather</a>
+        <a href="#despawn">Despawn Time</a>
+        <a href="#mixed">Mixed</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <p class="lead">Copy ready examples for every supported query element. Each command is in code format with a short description. Works with the syntax rules you supplied.</p>
+
+    <div class="searchbar">
+      <input id="filter" type="text" placeholder="Filter examples by text, for example 'iv100' or 'rainy'" />
+    </div>
+
+    <!-- 1. Basic -->
+    <section id="basic" class="section" aria-labelledby="basic-title">
+      <h2 id="basic-title">1. Basic Pokémon search</h2>
+      <div class="grid">
+        <article class="item" data-text="pikachu basic name">
+          <div class="row">
+            <code>/pokesearch pikachu</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu">Copy</button>
+          </div>
+          <p class="desc">Find spawns for Pikachu by name.</p>
+        </article>
+        <article class="item" data-text="150 basic id mewtwo">
+          <div class="row">
+            <code>/pokesearch 150</code>
+            <button class="copy-btn" data-copy="/pokesearch 150">Copy</button>
+          </div>
+          <p class="desc">Search by Pokédex ID. 150 is Mewtwo.</p>
+        </article>
+        <article class="item" data-text="mewtwo armored form">
+          <div class="row">
+            <code>/pokesearch mewtwo/armored</code>
+            <button class="copy-btn" data-copy="/pokesearch mewtwo/armored">Copy</button>
+          </div>
+          <p class="desc">Search by name and form.</p>
+        </article>
+        <article class="item" data-text="snorlax shadow exact form equals">
+          <div class="row">
+            <code>/pokesearch snorlax=shadow</code>
+            <button class="copy-btn" data-copy="/pokesearch snorlax=shadow">Copy</button>
+          </div>
+          <p class="desc">Use =form to require an exact form without abbreviations.</p>
+        </article>
+        <article class="item" data-text="form only rock">
+          <div class="row">
+            <code>/pokesearch rock</code>
+            <button class="copy-btn" data-copy="/pokesearch rock">Copy</button>
+          </div>
+          <p class="desc">Search by form keyword only.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 2. IV Filters -->
+    <section id="iv" class="section" aria-labelledby="iv-title">
+      <h2 id="iv-title">2. IV filters</h2>
+      <div class="grid">
+        <article class="item" data-text="iv100 perfect">
+          <div class="row">
+            <code>/pokesearch iv100</code>
+            <button class="copy-btn" data-copy="/pokesearch iv100">Copy</button>
+          </div>
+          <p class="desc">Only 100% IV spawns.</p>
+        </article>
+        <article class="item" data-text="iv90">
+          <div class="row">
+            <code>/pokesearch iv90</code>
+            <button class="copy-btn" data-copy="/pokesearch iv90">Copy</button>
+          </div>
+          <p class="desc">Minimum 90% IV.</p>
+        </article>
+        <article class="item" data-text="iv80 pikachu">
+          <div class="row">
+            <code>/pokesearch iv80 pikachu</code>
+            <button class="copy-btn" data-copy="/pokesearch iv80 pikachu">Copy</button>
+          </div>
+          <p class="desc">Pikachu with at least 80% IV.</p>
+        </article>
+        <article class="item" data-text="snorlax iv95">
+          <div class="row">
+            <code>/pokesearch snorlax iv95</code>
+            <button class="copy-btn" data-copy="/pokesearch snorlax iv95">Copy</button>
+          </div>
+          <p class="desc">Snorlax with 95% IV or better.</p>
+        </article>
+        <article class="item" data-text="iv100 cp2000 combo">
+          <div class="row">
+            <code>/pokesearch iv100 cp2000</code>
+            <button class="copy-btn" data-copy="/pokesearch iv100 cp2000">Copy</button>
+          </div>
+          <p class="desc">Perfect IV and at least 2000 CP.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. CP Filters -->
+    <section id="cp" class="section" aria-labelledby="cp-title">
+      <h2 id="cp-title">3. CP filters</h2>
+      <div class="grid">
+        <article class="item" data-text="cp1000">
+          <div class="row">
+            <code>/pokesearch cp1000</code>
+            <button class="copy-btn" data-copy="/pokesearch cp1000">Copy</button>
+          </div>
+          <p class="desc">Minimum CP 1000.</p>
+        </article>
+        <article class="item" data-text="cp2500 iv95">
+          <div class="row">
+            <code>/pokesearch cp2500 iv95</code>
+            <button class="copy-btn" data-copy="/pokesearch cp2500 iv95">Copy</button>
+          </div>
+          <p class="desc">CP 2500 or more with IV at least 95%.</p>
+        </article>
+        <article class="item" data-text="pikachu cp500">
+          <div class="row">
+            <code>/pokesearch pikachu cp500</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu cp500">Copy</button>
+          </div>
+          <p class="desc">Pikachu with minimum 500 CP.</p>
+        </article>
+        <article class="item" data-text="iv100 cp3000 dragonite">
+          <div class="row">
+            <code>/pokesearch iv100 cp3000 dragonite</code>
+            <button class="copy-btn" data-copy="/pokesearch iv100 cp3000 dragonite">Copy</button>
+          </div>
+          <p class="desc">Dragonite that is 100% IV and 3000+ CP.</p>
+        </article>
+        <article class="item" data-text="cp4000 high cp">
+          <div class="row">
+            <code>/pokesearch cp4000</code>
+            <button class="copy-btn" data-copy="/pokesearch cp4000">Copy</button>
+          </div>
+          <p class="desc">Very high CP spawns only.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. Level Filters -->
+    <section id="level" class="section" aria-labelledby="level-title">
+      <h2 id="level-title">4. Level filters</h2>
+      <div class="grid">
+        <article class="item" data-text="lvl30">
+          <div class="row">
+            <code>/pokesearch lvl30</code>
+            <button class="copy-btn" data-copy="/pokesearch lvl30">Copy</button>
+          </div>
+          <p class="desc">Minimum level 30.</p>
+        </article>
+        <article class="item" data-text="lvl40 iv100">
+          <div class="row">
+            <code>/pokesearch lvl40 iv100</code>
+            <button class="copy-btn" data-copy="/pokesearch lvl40 iv100">Copy</button>
+          </div>
+          <p class="desc">Level 40 and perfect IV.</p>
+        </article>
+        <article class="item" data-text="pikachu lvl20">
+          <div class="row">
+            <code>/pokesearch pikachu lvl20</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu lvl20">Copy</button>
+          </div>
+          <p class="desc">Pikachu at least level 20.</p>
+        </article>
+        <article class="item" data-text="lvl35 cp2500">
+          <div class="row">
+            <code>/pokesearch lvl35 cp2500</code>
+            <button class="copy-btn" data-copy="/pokesearch lvl35 cp2500">Copy</button>
+          </div>
+          <p class="desc">Level 35 or higher and 2500+ CP.</p>
+        </article>
+        <article class="item" data-text="lvl50 dragonite">
+          <div class="row">
+            <code>/pokesearch lvl50 dragonite</code>
+            <button class="copy-btn" data-copy="/pokesearch lvl50 dragonite">Copy</button>
+          </div>
+          <p class="desc">Dragonite level 50 or higher.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. Exact IV Distribution -->
+    <section id="exact-iv" class="section" aria-labelledby="exact-title">
+      <h2 id="exact-title">5. Exact IV distribution</h2>
+      <div class="grid">
+        <article class="item" data-text="15/15/15 hundo spread">
+          <div class="row">
+            <code>/pokesearch 15/15/15</code>
+            <button class="copy-btn" data-copy="/pokesearch 15/15/15">Copy</button>
+          </div>
+          <p class="desc">Exact 15/15/15 IVs.</p>
+        </article>
+        <article class="item" data-text="0/0/15 pvp specialist">
+          <div class="row">
+            <code>/pokesearch 0/0/15</code>
+            <button class="copy-btn" data-copy="/pokesearch 0/0/15">Copy</button>
+          </div>
+          <p class="desc">Exact 0/0/15 IVs.</p>
+        </article>
+        <article class="item" data-text="pikachu 15/14/12">
+          <div class="row">
+            <code>/pokesearch pikachu 15/14/12</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu 15/14/12">Copy</button>
+          </div>
+          <p class="desc">Pikachu with exact 15/14/12 IVs.</p>
+        </article>
+        <article class="item" data-text="snorlax 13/13/13">
+          <div class="row">
+            <code>/pokesearch snorlax 13/13/13</code>
+            <button class="copy-btn" data-copy="/pokesearch snorlax 13/13/13">Copy</button>
+          </div>
+          <p class="desc">Snorlax with exact 13/13/13 IVs.</p>
+        </article>
+        <article class="item" data-text="10/10/10 lvl20">
+          <div class="row">
+            <code>/pokesearch 10/10/10 lvl20</code>
+            <button class="copy-btn" data-copy="/pokesearch 10/10/10 lvl20">Copy</button>
+          </div>
+          <p class="desc">Exact IVs plus minimum level.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 6. Weather Boosted -->
+    <section id="boosted" class="section" aria-labelledby="boosted-title">
+      <h2 id="boosted-title">6. Weather boosted spawns</h2>
+      <div class="grid">
+        <article class="item" data-text="boosted any">
+          <div class="row">
+            <code>/pokesearch boosted</code>
+            <button class="copy-btn" data-copy="/pokesearch boosted">Copy</button>
+          </div>
+          <p class="desc">Only weather boosted spawns.</p>
+        </article>
+        <article class="item" data-text="pikachu boosted">
+          <div class="row">
+            <code>/pokesearch pikachu boosted</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu boosted">Copy</button>
+          </div>
+          <p class="desc">Pikachu that are weather boosted.</p>
+        </article>
+        <article class="item" data-text="iv100 boosted">
+          <div class="row">
+            <code>/pokesearch iv100 boosted</code>
+            <button class="copy-btn" data-copy="/pokesearch iv100 boosted">Copy</button>
+          </div>
+          <p class="desc">Perfect IV spawns that are boosted.</p>
+        </article>
+        <article class="item" data-text="cp2000 boosted">
+          <div class="row">
+            <code>/pokesearch cp2000 boosted</code>
+            <button class="copy-btn" data-copy="/pokesearch cp2000 boosted">Copy</button>
+          </div>
+          <p class="desc">CP 2000+ and weather boosted.</p>
+        </article>
+        <article class="item" data-text="boosted lvl30">
+          <div class="row">
+            <code>/pokesearch boosted lvl30</code>
+            <button class="copy-btn" data-copy="/pokesearch boosted lvl30">Copy</button>
+          </div>
+          <p class="desc">Boosted spawns with minimum level 30.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 7. Gender Filters -->
+    <section id="gender" class="section" aria-labelledby="gender-title">
+      <h2 id="gender-title">7. Gender filters</h2>
+      <div class="grid">
+        <article class="item" data-text="male">
+          <div class="row">
+            <code>/pokesearch male</code>
+            <button class="copy-btn" data-copy="/pokesearch male">Copy</button>
+          </div>
+          <p class="desc">Only male spawns.</p>
+        </article>
+        <article class="item" data-text="female">
+          <div class="row">
+            <code>/pokesearch female</code>
+            <button class="copy-btn" data-copy="/pokesearch female">Copy</button>
+          </div>
+          <p class="desc">Only female spawns.</p>
+        </article>
+        <article class="item" data-text="genderless">
+          <div class="row">
+            <code>/pokesearch genderless</code>
+            <button class="copy-btn" data-copy="/pokesearch genderless">Copy</button>
+          </div>
+          <p class="desc">Only genderless spawns.</p>
+        </article>
+        <article class="item" data-text="pikachu male symbol">
+          <div class="row">
+            <code>/pokesearch pikachu ♂</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu ♂">Copy</button>
+          </div>
+          <p class="desc">Pikachu male only using symbol.</p>
+        </article>
+        <article class="item" data-text="snorlax female iv90">
+          <div class="row">
+            <code>/pokesearch snorlax ♀ iv90</code>
+            <button class="copy-btn" data-copy="/pokesearch snorlax ♀ iv90">Copy</button>
+          </div>
+          <p class="desc">Female Snorlax with at least 90% IV.</p>
+        </article>
+        <article class="item" data-text="genderless symbol boosted">
+          <div class="row">
+            <code>/pokesearch ⚲ boosted</code>
+            <button class="copy-btn" data-copy="/pokesearch ⚲ boosted">Copy</button>
+          </div>
+          <p class="desc">Genderless spawns that are boosted.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 8. PvP Rank Filters -->
+    <section id="pvp" class="section" aria-labelledby="pvp-title">
+      <h2 id="pvp-title">8. PvP rank filters</h2>
+      <div class="grid">
+        <article class="item" data-text="lc50 little cup">
+          <div class="row">
+            <code>/pokesearch lc50</code>
+            <button class="copy-btn" data-copy="/pokesearch lc50">Copy</button>
+          </div>
+          <p class="desc">Little League rank 1 to 50.</p>
+        </article>
+        <article class="item" data-text="gl100 great league">
+          <div class="row">
+            <code>/pokesearch gl100</code>
+            <button class="copy-btn" data-copy="/pokesearch gl100">Copy</button>
+          </div>
+          <p class="desc">Great League rank 1 to 100.</p>
+        </article>
+        <article class="item" data-text="ul25 ultra league">
+          <div class="row">
+            <code>/pokesearch ul25</code>
+            <button class="copy-btn" data-copy="/pokesearch ul25">Copy</button>
+          </div>
+          <p class="desc">Ultra League rank 1 to 25.</p>
+        </article>
+        <article class="item" data-text="pikachu gl10">
+          <div class="row">
+            <code>/pokesearch pikachu gl10</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu gl10">Copy</button>
+          </div>
+          <p class="desc">Pikachu that are GL rank 10 or better.</p>
+        </article>
+        <article class="item" data-text="snorlax ul50 iv95">
+          <div class="row">
+            <code>/pokesearch snorlax ul50 iv95</code>
+            <button class="copy-btn" data-copy="/pokesearch snorlax ul50 iv95">Copy</button>
+          </div>
+          <p class="desc">Snorlax UL rank up to 50 with 95% IV.</p>
+        </article>
+        <article class="item" data-text="gl1 iv100 rank1">
+          <div class="row">
+            <code>/pokesearch gl1 iv100</code>
+            <button class="copy-btn" data-copy="/pokesearch gl1 iv100">Copy</button>
+          </div>
+          <p class="desc">Great League rank 1 and perfect IV.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 9. Spawn Size Categories -->
+    <section id="size" class="section" aria-labelledby="size-title">
+      <h2 id="size-title">9. Spawn size categories</h2>
+      <div class="grid">
+        <article class="item" data-text="XXS size">
+          <div class="row">
+            <code>/pokesearch XXS</code>
+            <button class="copy-btn" data-copy="/pokesearch XXS">Copy</button>
+          </div>
+          <p class="desc">Only XXS spawns.</p>
+        </article>
+        <article class="item" data-text="XS size">
+          <div class="row">
+            <code>/pokesearch XS</code>
+            <button class="copy-btn" data-copy="/pokesearch XS">Copy</button>
+          </div>
+          <p class="desc">Only XS spawns.</p>
+        </article>
+        <article class="item" data-text="M size">
+          <div class="row">
+            <code>/pokesearch M</code>
+            <button class="copy-btn" data-copy="/pokesearch M">Copy</button>
+          </div>
+          <p class="desc">Only M sized spawns.</p>
+        </article>
+        <article class="item" data-text="XL size">
+          <div class="row">
+            <code>/pokesearch XL</code>
+            <button class="copy-btn" data-copy="/pokesearch XL">Copy</button>
+          </div>
+          <p class="desc">Only XL spawns.</p>
+        </article>
+        <article class="item" data-text="XXL size">
+          <div class="row">
+            <code>/pokesearch XXL</code>
+            <button class="copy-btn" data-copy="/pokesearch XXL">Copy</button>
+          </div>
+          <p class="desc">Only XXL spawns.</p>
+        </article>
+        <article class="item" data-text="pikachu XL">
+          <div class="row">
+            <code>/pokesearch pikachu XL</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu XL">Copy</button>
+          </div>
+          <p class="desc">Pikachu that are XL size.</p>
+        </article>
+        <article class="item" data-text="snorlax XXL iv100">
+          <div class="row">
+            <code>/pokesearch snorlax XXL iv100</code>
+            <button class="copy-btn" data-copy="/pokesearch snorlax XXL iv100">Copy</button>
+          </div>
+          <p class="desc">Snorlax XXL with perfect IV.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 10. Radius & Location -->
+    <section id="radius" class="section" aria-labelledby="radius-title">
+      <h2 id="radius-title">10. Radius and location</h2>
+      <div class="grid">
+        <article class="item" data-text="5km radius">
+          <div class="row">
+            <code>/pokesearch 5km</code>
+            <button class="copy-btn" data-copy="/pokesearch 5km">Copy</button>
+          </div>
+          <p class="desc">Search radius 5 km from default center.</p>
+        </article>
+        <article class="item" data-text="20mi radius miles">
+          <div class="row">
+            <code>/pokesearch 20mi</code>
+            <button class="copy-btn" data-copy="/pokesearch 20mi">Copy</button>
+          </div>
+          <p class="desc">Search radius 20 miles.</p>
+        </article>
+        <article class="item" data-text="pikachu 15km">
+          <div class="row">
+            <code>/pokesearch pikachu 15km</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu 15km">Copy</button>
+          </div>
+          <p class="desc">Pikachu within 15 km.</p>
+        </article>
+        <article class="item" data-text="iv100 1mi">
+          <div class="row">
+            <code>/pokesearch iv100 1mi</code>
+            <button class="copy-btn" data-copy="/pokesearch iv100 1mi">Copy</button>
+          </div>
+          <p class="desc">Perfect IV within 1 mile.</p>
+        </article>
+        <article class="item" data-text="lat lon los angeles">
+          <div class="row">
+            <code>/pokesearch 34.0522,-118.2437</code>
+            <button class="copy-btn" data-copy="/pokesearch 34.0522,-118.2437">Copy</button>
+          </div>
+          <p class="desc">Set search center by latitude and longitude.</p>
+        </article>
+        <article class="item" data-text="nyc lat lon iv95">
+          <div class="row">
+            <code>/pokesearch 40.7128,-74.0060 iv95</code>
+            <button class="copy-btn" data-copy="/pokesearch 40.7128,-74.0060 iv95">Copy</button>
+          </div>
+          <p class="desc">New coordinates with a 95% IV filter.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 11. Weather Conditions -->
+    <section id="weather" class="section" aria-labelledby="weather-title">
+      <h2 id="weather-title">11. Weather conditions</h2>
+      <div class="grid">
+        <article class="item" data-text="clear">
+          <div class="row">
+            <code>/pokesearch clear</code>
+            <button class="copy-btn" data-copy="/pokesearch clear">Copy</button>
+          </div>
+          <p class="desc">Only clear weather spawns.</p>
+        </article>
+        <article class="item" data-text="rainy">
+          <div class="row">
+            <code>/pokesearch rainy</code>
+            <button class="copy-btn" data-copy="/pokesearch rainy">Copy</button>
+          </div>
+          <p class="desc">Only rainy weather spawns.</p>
+        </article>
+        <article class="item" data-text="partlycloudy">
+          <div class="row">
+            <code>/pokesearch partlycloudy</code>
+            <button class="copy-btn" data-copy="/pokesearch partlycloudy">Copy</button>
+          </div>
+          <p class="desc">Only partly cloudy spawns.</p>
+        </article>
+        <article class="item" data-text="cloudy">
+          <div class="row">
+            <code>/pokesearch cloudy</code>
+            <button class="copy-btn" data-copy="/pokesearch cloudy">Copy</button>
+          </div>
+          <p class="desc">Only cloudy spawns.</p>
+        </article>
+        <article class="item" data-text="windy">
+          <div class="row">
+            <code>/pokesearch windy</code>
+            <button class="copy-btn" data-copy="/pokesearch windy">Copy</button>
+          </div>
+          <p class="desc">Only windy spawns.</p>
+        </article>
+        <article class="item" data-text="snow">
+          <div class="row">
+            <code>/pokesearch snow</code>
+            <button class="copy-btn" data-copy="/pokesearch snow">Copy</button>
+          </div>
+          <p class="desc">Only snow weather spawns.</p>
+        </article>
+        <article class="item" data-text="fog">
+          <div class="row">
+            <code>/pokesearch fog</code>
+            <button class="copy-btn" data-copy="/pokesearch fog">Copy</button>
+          </div>
+          <p class="desc">Only fog weather spawns.</p>
+        </article>
+        <article class="item" data-text="pikachu rain emoji">
+          <div class="row">
+            <code>/pokesearch pikachu 🌧</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu 🌧">Copy</button>
+          </div>
+          <p class="desc">Pikachu when the weather is rainy using emoji.</p>
+        </article>
+        <article class="item" data-text="snorlax fog emoji iv100">
+          <div class="row">
+            <code>/pokesearch snorlax 🌫 iv100</code>
+            <button class="copy-btn" data-copy="/pokesearch snorlax 🌫 iv100">Copy</button>
+          </div>
+          <p class="desc">Snorlax in fog with perfect IV.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 12. Despawn Time -->
+    <section id="despawn" class="section" aria-labelledby="despawn-title">
+      <h2 id="despawn-title">12. Despawn time filters</h2>
+      <div class="grid">
+        <article class="item" data-text="5m">
+          <div class="row">
+            <code>/pokesearch 5m</code>
+            <button class="copy-btn" data-copy="/pokesearch 5m">Copy</button>
+          </div>
+          <p class="desc">At least 5 minutes left before despawn.</p>
+        </article>
+        <article class="item" data-text="10m">
+          <div class="row">
+            <code>/pokesearch 10m</code>
+            <button class="copy-btn" data-copy="/pokesearch 10m">Copy</button>
+          </div>
+          <p class="desc">At least 10 minutes left.</p>
+        </article>
+        <article class="item" data-text="30s">
+          <div class="row">
+            <code>/pokesearch 30s</code>
+            <button class="copy-btn" data-copy="/pokesearch 30s">Copy</button>
+          </div>
+          <p class="desc">At least 30 seconds left.</p>
+        </article>
+        <article class="item" data-text="pikachu 2h">
+          <div class="row">
+            <code>/pokesearch pikachu 2h</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu 2h">Copy</button>
+          </div>
+          <p class="desc">Pikachu with at least 2 hours left.</p>
+        </article>
+        <article class="item" data-text="snorlax iv100 1h30m">
+          <div class="row">
+            <code>/pokesearch snorlax iv100 1h30m</code>
+            <button class="copy-btn" data-copy="/pokesearch snorlax iv100 1h30m">Copy</button>
+          </div>
+          <p class="desc">Perfect IV Snorlax with at least 1 hour 30 minutes left.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 13. Mixed Examples -->
+    <section id="mixed" class="section" aria-labelledby="mixed-title">
+      <h2 id="mixed-title">13. Full mixed examples</h2>
+      <div class="grid">
+        <article class="item" data-text="pikachu iv95 cp500 boosted">
+          <div class="row">
+            <code>/pokesearch pikachu iv95 cp500 boosted</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu iv95 cp500 boosted">Copy</button>
+          </div>
+          <p class="desc">Pikachu with 95% IV, 500+ CP, and weather boosted.</p>
+        </article>
+        <article class="item" data-text="snorlax 15/15/15 lvl40 male">
+          <div class="row">
+            <code>/pokesearch snorlax 15/15/15 lvl40 ♂</code>
+            <button class="copy-btn" data-copy="/pokesearch snorlax 15/15/15 lvl40 ♂">Copy</button>
+          </div>
+          <p class="desc">Male Snorlax with perfect IV at level 40.</p>
+        </article>
+        <article class="item" data-text="dragonite iv100 cp3500 boosted 5km">
+          <div class="row">
+            <code>/pokesearch dragonite iv100 cp3500 boosted 5km</code>
+            <button class="copy-btn" data-copy="/pokesearch dragonite iv100 cp3500 boosted 5km">Copy</button>
+          </div>
+          <p class="desc">Dragonite perfect IV, 3500+ CP, boosted, within 5 km.</p>
+        </article>
+        <article class="item" data-text="mewtwo armored gl50 iv90 nyc coords">
+          <div class="row">
+            <code>/pokesearch mewtwo/armored gl50 iv90 40.7128,-74.0060</code>
+            <button class="copy-btn" data-copy="/pokesearch mewtwo/armored gl50 iv90 40.7128,-74.0060">Copy</button>
+          </div>
+          <p class="desc">Armored Mewtwo with GL rank up to 50, 90% IV at given coordinates.</p>
+        </article>
+        <article class="item" data-text="pikachu xxs rainy 10m">
+          <div class="row">
+            <code>/pokesearch pikachu XXS rainy 10m</code>
+            <button class="copy-btn" data-copy="/pokesearch pikachu XXS rainy 10m">Copy</button>
+          </div>
+          <p class="desc">Pikachu XXS in rainy weather with at least 10 minutes left.</p>
+        </article>
+        <article class="item" data-text="snorlax xxl boosted iv95 lvl35">
+          <div class="row">
+            <code>/pokesearch snorlax XXL boosted iv95 lvl35</code>
+            <button class="copy-btn" data-copy="/pokesearch snorlax XXL boosted iv95 lvl35">Copy</button>
+          </div>
+          <p class="desc">Snorlax XXL, boosted, at least 95% IV and level 35.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <p class="muted">Tip: Combine filters freely. Search always respects channel filters if set.</p>
+    </footer>
+  </main>
+
+  <script>
+    // Copy to clipboard
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const text = btn.getAttribute('data-copy');
+        navigator.clipboard.writeText(text).then(() => {
+          const old = btn.textContent;
+          btn.textContent = 'Copied';
+          setTimeout(() => btn.textContent = old, 1100);
+        });
+      });
+    });
+
+    // Simple filter across items
+    const filter = document.getElementById('filter');
+    const items = Array.from(document.querySelectorAll('.item'));
+    filter.addEventListener('input', () => {
+      const q = filter.value.trim().toLowerCase();
+      items.forEach(el => {
+        const t = el.getAttribute('data-text') + ' ' + el.innerText;
+        el.style.display = t.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
