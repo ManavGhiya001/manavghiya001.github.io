@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>/raidsearch Example Commands Guide</title>
+  <style>
+    :root {
+      --bg: #0f1221;
+      --card: #141832;
+      --card-2: #11162c;
+      --text: #e9ecf1;
+      --muted: #b9bfd1;
+      --accent: #7aa2ff;
+      --accent-2: #8dffca;
+      --border: #22294a;
+      --code-bg: #0b0f22;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(180deg, var(--bg), #0a0d1a 60%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(15,18,33,0.7);
+      border-bottom: 1px solid var(--border);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .logo { width: 28px; height: 28px; border-radius: 9px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 6px 24px rgba(122,162,255,0.35); }
+    h1 { font-size: 28px; margin: 0; }
+
+    nav { margin-top: 10px; display: grid; grid-auto-flow: column; gap: 10px; overflow:auto; padding-bottom: 8px; }
+    nav a { white-space: nowrap; text-decoration: none; color: var(--text); border: 1px solid var(--border); background: var(--card-2); padding: 8px 12px; border-radius: 10px; font-size: 14px; }
+    nav a:hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(122,162,255,0.15) inset; }
+
+    main { padding: 24px 16px 60px; }
+    .lead { color: var(--muted); max-width: 800px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
+
+    section.section {
+      background: radial-gradient(1200px 600px at -10% -10%, rgba(122,162,255,0.06), transparent 60%), var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    }
+    section.section h2 { margin: 0 0 12px; font-size: 20px; }
+    .item { border: 1px dashed var(--border); border-radius: 12px; padding: 12px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)); }
+    .row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+
+    pre { margin: 0; }
+    code { display: block; background: var(--code-bg); color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 13px; overflow:auto; }
+    .desc { margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+    .copy-btn { cursor: pointer; border: 1px solid var(--border); background: var(--card-2); color: var(--text); border-radius: 10px; padding: 8px 10px; font-size: 12px; }
+    .copy-btn:hover { border-color: var(--accent); }
+
+    .searchbar { margin: 16px 0 10px; display: flex; gap: 10px; }
+    .searchbar input { flex: 1; background: var(--card-2); color: var(--text); border: 1px solid var(--border); padding: 12px; border-radius: 12px; }
+    .searchbar small { color: var(--muted); }
+
+    footer { color: var(--muted); text-align: center; padding: 30px 0 60px; }
+    .muted { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>/raidsearch Example Commands Guide</h1>
+      </div>
+      <nav aria-label="Sections">
+        <a href="#basic">Basic</a>
+        <a href="#egg-hatched">Egg or Hatched</a>
+        <a href="#boosted">Boosted</a>
+        <a href="#ex">EX Eligible</a>
+        <a href="#teams">Gym Team</a>
+        <a href="#tier">Tier & Mega</a>
+        <a href="#radius">Radius & Location</a>
+        <a href="#weather">Weather</a>
+        <a href="#mixed">Mixed</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <p class="lead">Copy ready examples for every supported <code>/raidsearch</code> query element. Each command is in code format with a short description. Matches the syntax rules you supplied.</p>
+
+    <div class="searchbar">
+      <input id="filter" type="text" placeholder="Filter examples by text, for example 't5', 'mystic' or '🌧'" />
+    </div>
+
+    <!-- 1. Basic -->
+    <section id="basic" class="section" aria-labelledby="basic-title">
+      <h2 id="basic-title">1. Basic raid target</h2>
+      <div class="grid">
+        <article class="item" data-text="pikachu name basic">
+          <div class="row">
+            <code>/raidsearch pikachu</code>
+            <button class="copy-btn" data-copy="/raidsearch pikachu">Copy</button>
+          </div>
+          <p class="desc">Find raids featuring Pikachu by name.</p>
+        </article>
+        <article class="item" data-text="150 id mewtwo">
+          <div class="row">
+            <code>/raidsearch 150</code>
+            <button class="copy-btn" data-copy="/raidsearch 150">Copy</button>
+          </div>
+          <p class="desc">Search by Pokédex ID. 150 is Mewtwo.</p>
+        </article>
+        <article class="item" data-text="mewtwo armored form">
+          <div class="row">
+            <code>/raidsearch mewtwo/armored</code>
+            <button class="copy-btn" data-copy="/raidsearch mewtwo/armored">Copy</button>
+          </div>
+          <p class="desc">Search by name and form.</p>
+        </article>
+        <article class="item" data-text="snorlax shadow equals exact">
+          <div class="row">
+            <code>/raidsearch snorlax=shadow</code>
+            <button class="copy-btn" data-copy="/raidsearch snorlax=shadow">Copy</button>
+          </div>
+          <p class="desc">Use =form to require an exact form without abbreviations.</p>
+        </article>
+        <article class="item" data-text="form only rock">
+          <div class="row">
+            <code>/raidsearch rock</code>
+            <button class="copy-btn" data-copy="/raidsearch rock">Copy</button>
+          </div>
+          <p class="desc">Search by form keyword only.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 2. Egg or Hatched -->
+    <section id="egg-hatched" class="section" aria-labelledby="egg-hatched-title">
+      <h2 id="egg-hatched-title">2. Egg or hatched state</h2>
+      <div class="grid">
+        <article class="item" data-text="egg unhatched">
+          <div class="row">
+            <code>/raidsearch egg</code>
+            <button class="copy-btn" data-copy="/raidsearch egg">Copy</button>
+          </div>
+          <p class="desc">Only show unhatched raid eggs.</p>
+        </article>
+        <article class="item" data-text="hatched">
+          <div class="row">
+            <code>/raidsearch hatched</code>
+            <button class="copy-btn" data-copy="/raidsearch hatched">Copy</button>
+          </div>
+          <p class="desc">Only show raids that have already hatched.</p>
+        </article>
+        <article class="item" data-text="pikachu egg">
+          <div class="row">
+            <code>/raidsearch pikachu egg</code>
+            <button class="copy-btn" data-copy="/raidsearch pikachu egg">Copy</button>
+          </div>
+          <p class="desc">Pikachu raids that are still eggs.</p>
+        </article>
+        <article class="item" data-text="mewtwo hatched">
+          <div class="row">
+            <code>/raidsearch mewtwo hatched</code>
+            <button class="copy-btn" data-copy="/raidsearch mewtwo hatched">Copy</button>
+          </div>
+          <p class="desc">Mewtwo raids that have hatched.</p>
+        </article>
+        <article class="item" data-text="egg t5">
+          <div class="row">
+            <code>/raidsearch egg t5</code>
+            <button class="copy-btn" data-copy="/raidsearch egg t5">Copy</button>
+          </div>
+          <p class="desc">Unhatched Tier 5 eggs only.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. Weather Boosted -->
+    <section id="boosted" class="section" aria-labelledby="boosted-title">
+      <h2 id="boosted-title">3. Weather boosted raids</h2>
+      <div class="grid">
+        <article class="item" data-text="boosted any">
+          <div class="row">
+            <code>/raidsearch boosted</code>
+            <button class="copy-btn" data-copy="/raidsearch boosted">Copy</button>
+          </div>
+          <p class="desc">Only show raids with weather boost.</p>
+        </article>
+        <article class="item" data-text="pikachu boosted">
+          <div class="row">
+            <code>/raidsearch pikachu boosted</code>
+            <button class="copy-btn" data-copy="/raidsearch pikachu boosted">Copy</button>
+          </div>
+          <p class="desc">Pikachu raids that are weather boosted.</p>
+        </article>
+        <article class="item" data-text="t3 boosted">
+          <div class="row">
+            <code>/raidsearch t3 boosted</code>
+            <button class="copy-btn" data-copy="/raidsearch t3 boosted">Copy</button>
+          </div>
+          <p class="desc">Tier 3 raids with weather boost.</p>
+        </article>
+        <article class="item" data-text="mega boosted">
+          <div class="row">
+            <code>/raidsearch mega boosted</code>
+            <button class="copy-btn" data-copy="/raidsearch mega boosted">Copy</button>
+          </div>
+          <p class="desc">Only boosted Mega raids.</p>
+        </article>
+        <article class="item" data-text="boosted cloudy">
+          <div class="row">
+            <code>/raidsearch boosted cloudy</code>
+            <button class="copy-btn" data-copy="/raidsearch boosted cloudy">Copy</button>
+          </div>
+          <p class="desc">Raids boosted under cloudy weather.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. EX Eligible Gyms -->
+    <section id="ex" class="section" aria-labelledby="ex-title">
+      <h2 id="ex-title">4. EX eligible gyms</h2>
+      <div class="grid">
+        <article class="item" data-text="ex eligible">
+          <div class="row">
+            <code>/raidsearch ex</code>
+            <button class="copy-btn" data-copy="/raidsearch ex">Copy</button>
+          </div>
+          <p class="desc">Only show raids at EX eligible gyms.</p>
+        </article>
+        <article class="item" data-text="ex pikachu">
+          <div class="row">
+            <code>/raidsearch pikachu ex</code>
+            <button class="copy-btn" data-copy="/raidsearch pikachu ex">Copy</button>
+          </div>
+          <p class="desc">Pikachu raids at EX eligible gyms.</p>
+        </article>
+        <article class="item" data-text="ex mega">
+          <div class="row">
+            <code>/raidsearch ex mega</code>
+            <button class="copy-btn" data-copy="/raidsearch ex mega">Copy</button>
+          </div>
+          <p class="desc">Mega raids hosted at EX eligible gyms.</p>
+        </article>
+        <article class="item" data-text="ex t5">
+          <div class="row">
+            <code>/raidsearch ex t5</code>
+            <button class="copy-btn" data-copy="/raidsearch ex t5">Copy</button>
+          </div>
+          <p class="desc">Tier 5 raids at EX gyms.</p>
+        </article>
+        <article class="item" data-text="ex coords">
+          <div class="row">
+            <code>/raidsearch ex 40.7128,-74.0060</code>
+            <button class="copy-btn" data-copy="/raidsearch ex 40.7128,-74.0060">Copy</button>
+          </div>
+          <p class="desc">EX eligible raids around given coordinates.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. Gym Team Filters -->
+    <section id="teams" class="section" aria-labelledby="teams-title">
+      <h2 id="teams-title">5. Gym team filters</h2>
+      <div class="grid">
+        <article class="item" data-text="mystic blue team">
+          <div class="row">
+            <code>/raidsearch mystic</code>
+            <button class="copy-btn" data-copy="/raidsearch mystic">Copy</button>
+          </div>
+          <p class="desc">Raids in gyms controlled by Team Mystic.</p>
+        </article>
+        <article class="item" data-text="valor red team">
+          <div class="row">
+            <code>/raidsearch valor</code>
+            <button class="copy-btn" data-copy="/raidsearch valor">Copy</button>
+          </div>
+          <p class="desc">Raids in gyms controlled by Team Valor.</p>
+        </article>
+        <article class="item" data-text="instinct yellow team">
+          <div class="row">
+            <code>/raidsearch instinct</code>
+            <button class="copy-btn" data-copy="/raidsearch instinct">Copy</button>
+          </div>
+          <p class="desc">Raids in gyms controlled by Team Instinct.</p>
+        </article>
+        <article class="item" data-text="mystic t5">
+          <div class="row">
+            <code>/raidsearch mystic t5</code>
+            <button class="copy-btn" data-copy="/raidsearch mystic t5">Copy</button>
+          </div>
+          <p class="desc">Tier 5 raids at Mystic gyms.</p>
+        </article>
+        <article class="item" data-text="valor mega boosted">
+          <div class="row">
+            <code>/raidsearch valor mega boosted</code>
+            <button class="copy-btn" data-copy="/raidsearch valor mega boosted">Copy</button>
+          </div>
+          <p class="desc">Boosted Mega raids at Valor gyms.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 6. Tier & Mega -->
+    <section id="tier" class="section" aria-labelledby="tier-title">
+      <h2 id="tier-title">6. Raid tier and Mega</h2>
+      <div class="grid">
+        <article class="item" data-text="t1">
+          <div class="row">
+            <code>/raidsearch t1</code>
+            <button class="copy-btn" data-copy="/raidsearch t1">Copy</button>
+          </div>
+          <p class="desc">Tier 1 raids only.</p>
+        </article>
+        <article class="item" data-text="t3">
+          <div class="row">
+            <code>/raidsearch t3</code>
+            <button class="copy-btn" data-copy="/raidsearch t3">Copy</button>
+          </div>
+          <p class="desc">Tier 3 raids only.</p>
+        </article>
+        <article class="item" data-text="t5 legendary">
+          <div class="row">
+            <code>/raidsearch t5</code>
+            <button class="copy-btn" data-copy="/raidsearch t5">Copy</button>
+          </div>
+          <p class="desc">Tier 5 raids only.</p>
+        </article>
+        <article class="item" data-text="t6 pr">
+          <div class="row">
+            <code>/raidsearch t6</code>
+            <button class="copy-btn" data-copy="/raidsearch t6">Copy</button>
+          </div>
+          <p class="desc">Tier 6 raids only if supported.</p>
+        </article>
+        <article class="item" data-text="mega keyword">
+          <div class="row">
+            <code>/raidsearch mega</code>
+            <button class="copy-btn" data-copy="/raidsearch mega">Copy</button>
+          </div>
+          <p class="desc">Show Mega raids only.</p>
+        </article>
+        <article class="item" data-text="pikachu t3">
+          <div class="row">
+            <code>/raidsearch pikachu t3</code>
+            <button class="copy-btn" data-copy="/raidsearch pikachu t3">Copy</button>
+          </div>
+          <p class="desc">Pikachu featured in Tier 3 raids.</p>
+        </article>
+        <article class="item" data-text="mewtwo t5">
+          <div class="row">
+            <code>/raidsearch mewtwo t5</code>
+            <button class="copy-btn" data-copy="/raidsearch mewtwo t5">Copy</button>
+          </div>
+          <p class="desc">Mewtwo Tier 5 raids only.</p>
+        </article>
+        <article class="item" data-text="mega pikachu">
+          <div class="row">
+            <code>/raidsearch mega pikachu</code>
+            <button class="copy-btn" data-copy="/raidsearch mega pikachu">Copy</button>
+          </div>
+          <p class="desc">Mega raids featuring Pikachu (if any forms exist).</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 7. Radius & Location -->
+    <section id="radius" class="section" aria-labelledby="radius-title">
+      <h2 id="radius-title">7. Radius and location</h2>
+      <div class="grid">
+        <article class="item" data-text="5km radius">
+          <div class="row">
+            <code>/raidsearch 5km</code>
+            <button class="copy-btn" data-copy="/raidsearch 5km">Copy</button>
+          </div>
+          <p class="desc">Search radius 5 km from default center.</p>
+        </article>
+        <article class="item" data-text="20mi radius">
+          <div class="row">
+            <code>/raidsearch 20mi</code>
+            <button class="copy-btn" data-copy="/raidsearch 20mi">Copy</button>
+          </div>
+          <p class="desc">Search radius 20 miles.</p>
+        </article>
+        <article class="item" data-text="pikachu 15km">
+          <div class="row">
+            <code>/raidsearch pikachu 15km</code>
+            <button class="copy-btn" data-copy="/raidsearch pikachu 15km">Copy</button>
+          </div>
+          <p class="desc">Pikachu raids within 15 km.</p>
+        </article>
+        <article class="item" data-text="t5 1mi">
+          <div class="row">
+            <code>/raidsearch t5 1mi</code>
+            <button class="copy-btn" data-copy="/raidsearch t5 1mi">Copy</button>
+          </div>
+          <p class="desc">Tier 5 raids within 1 mile.</p>
+        </article>
+        <article class="item" data-text="los angeles coords">
+          <div class="row">
+            <code>/raidsearch 34.0522,-118.2437</code>
+            <button class="copy-btn" data-copy="/raidsearch 34.0522,-118.2437">Copy</button>
+          </div>
+          <p class="desc">Set search center by latitude and longitude.</p>
+        </article>
+        <article class="item" data-text="nyc coords pikachu">
+          <div class="row">
+            <code>/raidsearch 40.7128,-74.0060 pikachu</code>
+            <button class="copy-btn" data-copy="/raidsearch 40.7128,-74.0060 pikachu">Copy</button>
+          </div>
+          <p class="desc">Pikachu raids around given coordinates.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 8. Weather Conditions -->
+    <section id="weather" class="section" aria-labelledby="weather-title">
+      <h2 id="weather-title">8. Weather conditions</h2>
+      <div class="grid">
+        <article class="item" data-text="clear">
+          <div class="row">
+            <code>/raidsearch clear</code>
+            <button class="copy-btn" data-copy="/raidsearch clear">Copy</button>
+          </div>
+          <p class="desc">Only clear weather raids.</p>
+        </article>
+        <article class="item" data-text="rainy">
+          <div class="row">
+            <code>/raidsearch rainy</code>
+            <button class="copy-btn" data-copy="/raidsearch rainy">Copy</button>
+          </div>
+          <p class="desc">Only rainy weather raids.</p>
+        </article>
+        <article class="item" data-text="partlycloudy">
+          <div class="row">
+            <code>/raidsearch partlycloudy</code>
+            <button class="copy-btn" data-copy="/raidsearch partlycloudy">Copy</button>
+          </div>
+          <p class="desc">Only partly cloudy raids.</p>
+        </article>
+        <article class="item" data-text="cloudy">
+          <div class="row">
+            <code>/raidsearch cloudy</code>
+            <button class="copy-btn" data-copy="/raidsearch cloudy">Copy</button>
+          </div>
+          <p class="desc">Only cloudy weather raids.</p>
+        </article>
+        <article class="item" data-text="windy">
+          <div class="row">
+            <code>/raidsearch windy</code>
+            <button class="copy-btn" data-copy="/raidsearch windy">Copy</button>
+          </div>
+          <p class="desc">Only windy weather raids.</p>
+        </article>
+        <article class="item" data-text="snow">
+          <div class="row">
+            <code>/raidsearch snow</code>
+            <button class="copy-btn" data-copy="/raidsearch snow">Copy</button>
+          </div>
+          <p class="desc">Only snow weather raids.</p>
+        </article>
+        <article class="item" data-text="fog">
+          <div class="row">
+            <code>/raidsearch fog</code>
+            <button class="copy-btn" data-copy="/raidsearch fog">Copy</button>
+          </div>
+          <p class="desc">Only fog weather raids.</p>
+        </article>
+        <article class="item" data-text="emoji rain pikachu">
+          <div class="row">
+            <code>/raidsearch pikachu 🌧</code>
+            <button class="copy-btn" data-copy="/raidsearch pikachu 🌧">Copy</button>
+          </div>
+          <p class="desc">Pikachu raids when the weather is rainy using emoji.</p>
+        </article>
+        <article class="item" data-text="emoji fog t5">
+          <div class="row">
+            <code>/raidsearch t5 🌫</code>
+            <button class="copy-btn" data-copy="/raidsearch t5 🌫">Copy</button>
+          </div>
+          <p class="desc">Tier 5 raids during fog using emoji.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 9. Mixed Examples -->
+    <section id="mixed" class="section" aria-labelledby="mixed-title">
+      <h2 id="mixed-title">9. Full mixed examples</h2>
+      <div class="grid">
+        <article class="item" data-text="pikachu boosted mystic 5km">
+          <div class="row">
+            <code>/raidsearch pikachu boosted mystic 5km</code>
+            <button class="copy-btn" data-copy="/raidsearch pikachu boosted mystic 5km">Copy</button>
+          </div>
+          <p class="desc">Pikachu raids that are boosted, at Mystic gyms, within 5 km.</p>
+        </article>
+        <article class="item" data-text="mewtwo t5 valor rainy coords">
+          <div class="row">
+            <code>/raidsearch mewtwo t5 valor rainy 40.7128,-74.0060</code>
+            <button class="copy-btn" data-copy="/raidsearch mewtwo t5 valor rainy 40.7128,-74.0060">Copy</button>
+          </div>
+          <p class="desc">Mewtwo Tier 5 at Valor gyms in rainy weather around the given coordinates.</p>
+        </article>
+        <article class="item" data-text="mega instinct cloudy 20mi">
+          <div class="row">
+            <code>/raidsearch mega instinct cloudy 20mi</code>
+            <button class="copy-btn" data-copy="/raidsearch mega instinct cloudy 20mi">Copy</button>
+          </div>
+          <p class="desc">Mega raids at Instinct gyms, cloudy weather, within 20 miles.</p>
+        </article>
+        <article class="item" data-text="egg t3 windy">
+          <div class="row">
+            <code>/raidsearch egg t3 windy</code>
+            <button class="copy-btn" data-copy="/raidsearch egg t3 windy">Copy</button>
+          </div>
+          <p class="desc">Unhatched Tier 3 eggs with windy weather.</p>
+        </article>
+        <article class="item" data-text="ex boosted 1mi">
+          <div class="row">
+            <code>/raidsearch ex boosted 1mi</code>
+            <button class="copy-btn" data-copy="/raidsearch ex boosted 1mi">Copy</button>
+          </div>
+          <p class="desc">EX eligible boosted raids within 1 mile.</p>
+        </article>
+        <article class="item" data-text="t5 boosted cloudy mystic 34.0522,-118.2437">
+          <div class="row">
+            <code>/raidsearch t5 boosted cloudy mystic 34.0522,-118.2437</code>
+            <button class="copy-btn" data-copy="/raidsearch t5 boosted cloudy mystic 34.0522,-118.2437">Copy</button>
+          </div>
+          <p class="desc">Tier 5, boosted, cloudy, in Mystic gyms around the coordinates.</p>
+        </article>
+        <article class="item" data-text="partlycloudy mega valor 15km">
+          <div class="row">
+            <code>/raidsearch partlycloudy mega valor 15km</code>
+            <button class="copy-btn" data-copy="/raidsearch partlycloudy mega valor 15km">Copy</button>
+          </div>
+          <p class="desc">Partly cloudy Mega raids at Valor gyms within 15 km.</p>
+        </article>
+        <article class="item" data-text="fog mystic egg">
+          <div class="row">
+            <code>/raidsearch fog mystic egg</code>
+            <button class="copy-btn" data-copy="/raidsearch fog mystic egg">Copy</button>
+          </div>
+          <p class="desc">Mystic gym raid eggs during fog.</p>
+        </article>
+        <article class="item" data-text="cloudy hatched instinct t3">
+          <div class="row">
+            <code>/raidsearch cloudy hatched instinct t3</code>
+            <button class="copy-btn" data-copy="/raidsearch cloudy hatched instinct t3">Copy</button>
+          </div>
+          <p class="desc">Hatched Tier 3 raids at Instinct gyms in cloudy weather.</p>
+        </article>
+        <article class="item" data-text="rainy mega ex 5km">
+          <div class="row">
+            <code>/raidsearch rainy mega ex 5km</code>
+            <button class="copy-btn" data-copy="/raidsearch rainy mega ex 5km">Copy</button>
+          </div>
+          <p class="desc">Rainy weather Mega raids at EX eligible gyms within 5 km.</p>
+        </article>
+        <article class="item" data-text="t1 mystic clear">
+          <div class="row">
+            <code>/raidsearch t1 mystic clear</code>
+            <button class="copy-btn" data-copy="/raidsearch t1 mystic clear">Copy</button>
+          </div>
+          <p class="desc">Tier 1 raids at Mystic gyms in clear weather.</p>
+        </article>
+        <article class="item" data-text="t3 valor snow 20mi">
+          <div class="row">
+            <code>/raidsearch t3 valor snow 20mi</code>
+            <button class="copy-btn" data-copy="/raidsearch t3 valor snow 20mi">Copy</button>
+          </div>
+          <p class="desc">Tier 3 raids at Valor gyms during snow within 20 miles.</p>
+        </article>
+        <article class="item" data-text="t5 instinct windy 40.7128,-74.0060">
+          <div class="row">
+            <code>/raidsearch t5 instinct windy 40.7128,-74.0060</code>
+            <button class="copy-btn" data-copy="/raidsearch t5 instinct windy 40.7128,-74.0060">Copy</button>
+          </div>
+          <p class="desc">Tier 5 Instinct gym raids with windy weather at the given coordinates.</p>
+        </article>
+        <article class="item" data-text="mega boosted pikachu 10mi">
+          <div class="row">
+            <code>/raidsearch mega boosted pikachu 10mi</code>
+            <button class="copy-btn" data-copy="/raidsearch mega boosted pikachu 10mi">Copy</button>
+          </div>
+          <p class="desc">Boosted Mega raids featuring Pikachu within 10 miles.</p>
+        </article>
+        <article class="item" data-text="egg ex valor 5km">
+          <div class="row">
+            <code>/raidsearch egg ex valor 5km</code>
+            <button class="copy-btn" data-copy="/raidsearch egg ex valor 5km">Copy</button>
+          </div>
+          <p class="desc">Unhatched raids at EX eligible Valor gyms within 5 km.</p>
+        </article>
+        <article class="item" data-text="hatched mystic mega 34.0522,-118.2437">
+          <div class="row">
+            <code>/raidsearch hatched mystic mega 34.0522,-118.2437</code>
+            <button class="copy-btn" data-copy="/raidsearch hatched mystic mega 34.0522,-118.2437">Copy</button>
+          </div>
+          <p class="desc">Hatched Mega raids at Mystic gyms around the coordinates.</p>
+        </article>
+        <article class="item" data-text="cloudy ex pikachu 1mi">
+          <div class="row">
+            <code>/raidsearch cloudy ex pikachu 1mi</code>
+            <button class="copy-btn" data-copy="/raidsearch cloudy ex pikachu 1mi">Copy</button>
+          </div>
+          <p class="desc">Cloudy weather Pikachu raids at EX eligible gyms within 1 mile.</p>
+        </article>
+        <article class="item" data-text="partlycloudy t5 ex mystic">
+          <div class="row">
+            <code>/raidsearch partlycloudy t5 ex mystic</code>
+            <button class="copy-btn" data-copy="/raidsearch partlycloudy t5 ex mystic">Copy</button>
+          </div>
+          <p class="desc">Partly cloudy Tier 5 raids at EX eligible Mystic gyms.</p>
+        </article>
+        <article class="item" data-text="windy mega valor 15km pikachu">
+          <div class="row">
+            <code>/raidsearch windy mega valor 15km pikachu</code>
+            <button class="copy-btn" data-copy="/raidsearch windy mega valor 15km pikachu">Copy</button>
+          </div>
+          <p class="desc">Windy weather Mega raids at Valor gyms featuring Pikachu in 15 km.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <p class="muted">Tip: Combine filters freely. Search always respects channel filters if set. Latitude and longitude can be in other formats but cannot contain spaces.</p>
+    </footer>
+  </main>
+
+  <script>
+    // Copy to clipboard with requested transformation (no visual change)
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const text = btn.getAttribute('data-copy');
+        const modifiedText = text.replace('/raidsearch ', '/raidsearch query:');
+        navigator.clipboard.writeText(modifiedText).then(() => {
+          const old = btn.textContent;
+          btn.textContent = 'Copied';
+          setTimeout(() => btn.textContent = old, 1100);
+        });
+      });
+    });
+
+    // Simple filter across items
+    const filter = document.getElementById('filter');
+    const items = Array.from(document.querySelectorAll('.item'));
+    filter.addEventListener('input', () => {
+      const q = filter.value.trim().toLowerCase();
+      items.forEach(el => {
+        const t = el.getAttribute('data-text') + ' ' + el.innerText;
+        el.style.display = t.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
